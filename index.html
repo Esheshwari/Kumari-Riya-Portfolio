@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kumari Riya - Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Playfair+Display:wght@400;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+        /* Hero Section with Image Slider */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8ffae 0%, #43c6ac 100%);
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8));
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+            max-width: 800px;
+        }
+
+        .slide-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            letter-spacing: 2px;
+            animation: subtleGlow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes subtleGlow {
+            0% { 
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+                transform: scale(1);
+            }
+            100% { 
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+                transform: scale(1.01);
+            }
+        }
+
+        .slide-content p {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            animation: fadeInUp 2s ease-out;
+            line-height: 1.6;
+        }
+
+        .slide-content .subtitle {
+            font-size: 1.1rem;
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c);
+            color: white;
+            padding: 18px 45px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            font-family: 'Poppins', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+            background: linear-gradient(45deg, #f5576c, #f093fb, #764ba2, #667eea);
+        }
+
+        /* Slider Navigation */
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            padding: 15px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 50%;
+            backdrop-filter: blur(10px);
+            z-index: 10;
+            pointer-events: auto;
+        }
+
+        .slider-nav:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .prev {
+            left: 20px;
+        }
+
+        .next {
+            right: 20px;
+        }
+
+        /* Slider Dots */
+        .slider-dots {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            padding: 12px 8px;
+            z-index: 1000;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar:hover {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 4px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            display: block;
+            padding: 12px 24px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            text-transform: uppercase;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+            border-radius: 25px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .nav-links a:hover::before {
+            opacity: 1;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+            transform: translateY(-2px);
+            text-shadow: 0 0 10px rgba(255,255,255,0.8);
+        }
+
+        /* About Section */
+        .about-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #e397d5 0%, #f57d6f 100%);
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        .about-wrapper {
+            max-width: 800px;
+            text-align: center;
+            font-family: 'Georgia', serif;
+            color: white;
+        }
+
+        .intro {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: 500;
+            color: #f8f9fa;
+        }
+
+        .intro span {
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .about-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #f1f3f4;
+            margin-bottom: 16px;
+        }
+
+        /* Education Section */
+        .edu-section {
+            background-color: #2a1cc7;
+            padding: 60px 10%;
+            color: white;
+            background-size: 300% 300%;
+            animation: gradientShift 10s ease infinite;
+            min-height: 100vh;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .highlight-section {
+            padding: 60px 10% 80px;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(135deg, #a772da 0%, #8ec5fc 100%);
+        }
+
+        .highlight-section h2 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .edu-entry {
+            max-width: 800px;
+            margin: 0 auto 50px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .edu-entry h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .edu-entry p, .edu-entry li {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin: 6px 0;
+            color: #f1f3f4;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Skills Section */
+        .skills-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #966b83 0%, #b37b78 100%);
+        }
+
+        .skills-section .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 16px;
+            box-sizing: border-box;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+            width: 100%;
+            box-sizing: border-box;
+            overflow-x: auto;
+            padding-bottom: 20px;
+        }
+
+        @media (max-width: 1024px) {
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .skills-section {
+                padding: 40px 0;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .skill-card {
+                padding: 20px;
+            }
+        }
+
+        .skill-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .skill-title {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .skill-badges {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .skill-badge {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Experience Section */
+        #experience {
+            background-color: #aa548b;
+            padding: 60px 10%;
+            color: white;
+        }
+
+        #experience h2 {
+            text-align: center;
+            font-size: 3.5rem;
+            margin-bottom: 40px;
+            color: white;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .experience-entry {
+            max-width: 850px;
+            margin: 0 auto 60px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .experience-date {
+            font-size: 1.2rem;
+            color: #f1f3f4;
+            margin: -10px 0 15px 0;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .experience-entry h3 {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .experience-entry ul {
+            padding-left: 20px;
+        }
+
+        .experience-entry li {
+            color: #f1f3f4;
+            margin-bottom: 8px;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #7f7285 0%, #aca5c3 100%);
+            padding: 100px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+        }
+
+        .contact-section h2 {
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;    
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.0rem;
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            gap: 0.75rem;
+        }
+
+        .contact-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .contact-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        .contact-footer {
+            font-size: 1.1rem;
+            color: #f1f3f4;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.3rem;
+            font-weight: 300;
+            margin-bottom: 50px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .slide-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .slide-content p {
+                font-size: 1.2rem;
+            }
+            
+            .navbar {
+                position: fixed;
+                top: 20px;
+                transform: translateX(-50%);
+            }
+            
+            .nav-links {
+                display: flex;
+                gap: 2px;
+                list-style: none;
+                align-items: center;
+            }
+            
+            .nav-links a {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section with Image Slider -->
+    <section class="hero-section" id="home">
+        <div class="slider-container">
+            <!-- Slide 1 -->
+            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');">
+                <div class="slide-content">
+                    <h1 class="floating">Hi, I'm Riya!</h1>
+                    <p>💼 Revenue Accountant at Coursera</p>
+                    <p class="subtitle">MBA Professional with 3+ years of experience in Revenue Recognition, Financial Analysis, and Business Operations. Passionate about transforming financial data into strategic insights.</p>
+                    <button class="cta-button" onclick="scrollToSection('about')">Explore My Journey</button>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');">
+                <div class="slide-content">
+                    <h1 class="floating">Revenue Expert</h1>
+                    <p>📊 Specializing in Revenue Recognition & Financial Analysis</p>
+                    <p class="subtitle">Expert in SAP, CRM integration, and financial accounting with proven track record at leading companies like Coursera, Altair, and Xiaomi India.</p>
+                    <button class="cta-button" onclick="scrollToSection('skills')">View My Skills</button>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');">
+                <div class="slide-content">
+                    <h1 class="floating">MBA Professional</h1>
+                    <p>🎓 Integrated BBA-MBA in Marketing & Finance</p>
+                    <p class="subtitle">Strong foundation in business administration, leadership, and project management. Experienced in driving strategic initiatives and managing cross-functional teams.</p>
+                    <button class="cta-button" onclick="scrollToSection('experience')">My Experience</button>
+                </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');">
+                <div class="slide-content">
+                    <h1 class="floating">Strategic Leader</h1>
+                    <p>🚀 Driving Business Growth Through Financial Excellence</p>
+                    <p class="subtitle">Combining analytical expertise with leadership skills to deliver impactful business solutions. Experienced in revenue assurance, contract review, and strategic planning.</p>
+                    <button class="cta-button" onclick="scrollToSection('contact')">Let's Connect</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slider Navigation -->
+        <button class="slider-nav prev" onclick="prevSlide();">❮</button>
+        <button class="slider-nav next" onclick="nextSlide();">❯</button>
+
+        <!-- Slider Dots -->
+        <div class="slider-dots">
+            <div class="dot active" onclick="currentSlide(1)"></div>
+            <div class="dot" onclick="currentSlide(2)"></div>
+            <div class="dot" onclick="currentSlide(3)"></div>
+            <div class="dot" onclick="currentSlide(4)"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="about-wrapper">
+            <h1 class="intro">Welcome to my Professional Portfolio!</h1>
+            <p class="about-text">
+                I'm a dedicated Revenue Accountant with 3+ years of experience in Revenue Recognition and Financial Analysis. Currently working at Coursera, I specialize in transforming complex financial data into actionable business insights.
+            </p>
+            <p class="about-text">
+                My journey began with an integrated BBA-MBA program, and I've had the privilege of working with industry leaders like Altair and Xiaomi India. I'm passionate about combining analytical rigor with strategic thinking to drive business growth.
+            </p>
+            <p class="about-text">
+                Beyond my professional expertise, I'm committed to continuous learning and giving back to the community through volunteering and leadership roles. I believe in the power of data-driven decision making and collaborative teamwork.
+            </p>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="highlight-section">
+        <h2>Education</h2>
+
+        <div class="edu-entry">
+            <h3>
+                <img src="logos/lpu.png" alt="LPU Logo" style="height:32px;vertical-align:middle;margin-right:8px;">
+                Integrated BBA-MBA
+            </h3>
+            <p><strong>Institution:</strong> Lovely Professional University</p>
+            <p><strong>Specialization:</strong> Marketing and Finance</p>
+            <p><strong>Duration:</strong> 2018 - 2022</p>
+            <p><strong>Focus Areas:</strong> Financial Management, Strategic Marketing, Business Operations, Leadership</p>
+            <p>Comprehensive business education combining undergraduate and graduate studies, providing strong foundation in both theoretical concepts and practical applications.</p>
+        </div>
+
+        <div class="edu-entry">
+            <h3>
+                <img src="logos/st xavier logo.jpg" alt="St Xavier's Logo" style="height:32px;vertical-align:middle;margin-right:8px;">
+                Intermediate Education
+            </h3>
+            <p><strong>Institution:</strong> St Xavier's Higher Secondary School, Bettiah</p>
+            <p><strong>Stream:</strong> Biology</p>
+            <p><strong>Duration:</strong> July 2015 - November 2017</p>
+            <p>Strong academic foundation with focus on analytical thinking and problem-solving skills.</p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills-section" id="skills">
+        <div class="container">
+            <h2 class="section-title">My Expertise</h2>
+            <p class="section-subtitle">Professional skills and competencies I bring to the table</p>
+            
+            <div class="skills-grid">
+                <!-- Financial Expertise -->
+                <div class="skill-card">
+                    <div class="skill-icon">💰</div>
+                    <h3 class="skill-title">Financial Expertise</h3>
+                    <div class="skill-badges">
+                        <img src="https://img.shields.io/badge/Revenue_Recognition-4CAF50?style=for-the-badge&logo=analytics&logoColor=white" alt="Revenue Recognition" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Financial_Accounting-2196F3?style=for-the-badge&logo=calculator&logoColor=white" alt="Financial Accounting" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Revenue_Assurance-FF9800?style=for-the-badge&logo=shield&logoColor=white" alt="Revenue Assurance" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Transfer_Pricing-9C27B0?style=for-the-badge&logo=exchange&logoColor=white" alt="Transfer Pricing" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Account_Reconciliation-607D8B?style=for-the-badge&logo=balance&logoColor=white" alt="Account Reconciliation" class="skill-badge">
+                    </div>
+                </div>
+
+                <!-- Technical Tools -->
+                <div class="skill-card">
+                    <div class="skill-icon">🔧</div>
+                    <h3 class="skill-title">Technical Tools</h3>
+                    <div class="skill-badges">
+                        <img src="https://img.shields.io/badge/SAP-0FAAFF?style=for-the-badge&logo=sap&logoColor=white" alt="SAP" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Microsoft_Excel-217346?style=for-the-badge&logo=microsoft-excel&logoColor=white" alt="Excel" class="skill-badge">
+                        <img src="https://img.shields.io/badge/CRM_Integration-FF6B35?style=for-the-badge&logo=salesforce&logoColor=white" alt="CRM Integration" class="skill-badge">
+                        <img src="https://img.shields.io/badge/IBM_SPSS-052FAD?style=for-the-badge&logo=ibm&logoColor=white" alt="IBM SPSS" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Microsoft_Office-D83B01?style=for-the-badge&logo=microsoft-office&logoColor=white" alt="Microsoft Office" class="skill-badge">
+                    </div>
+                </div>
+
+                <!-- Business Operations -->
+                <div class="skill-card">
+                    <div class="skill-icon">📊</div>
+                    <h3 class="skill-title">Business Operations</h3>
+                    <div class="skill-badges">
+                        <img src="https://img.shields.io/badge/Contract_Review-4CAF50?style=for-the-badge&logo=document&logoColor=white" alt="Contract Review" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Invoicing-2196F3?style=for-the-badge&logo=receipt&logoColor=white" alt="Invoicing" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Pricing_Strategy-FF9800?style=for-the-badge&logo=trending-up&logoColor=white" alt="Pricing Strategy" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Business_Administration-9C27B0?style=for-the-badge&logo=briefcase&logoColor=white" alt="Business Administration" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Journal_Entries-607D8B?style=for-the-badge&logo=book&logoColor=white" alt="Journal Entries" class="skill-badge">
+                    </div>
+                </div>
+
+                <!-- Leadership & Management -->
+                <div class="skill-card">
+                    <div class="skill-icon">👥</div>
+                    <h3 class="skill-title">Leadership & Management</h3>
+                    <div class="skill-badges">
+                        <img src="https://img.shields.io/badge/Leadership-FFD700?style=for-the-badge&logo=crown&logoColor=black" alt="Leadership" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Project_Management-FF6B35?style=for-the-badge&logo=project-diagram&logoColor=white" alt="Project Management" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Team_Leadership-4CAF50?style=for-the-badge&logo=users&logoColor=white" alt="Team Leadership" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Management-2196F3?style=for-the-badge&logo=user-tie&logoColor=white" alt="Management" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Public_Speaking-FF9800?style=for-the-badge&logo=microphone&logoColor=white" alt="Public Speaking" class="skill-badge">
+                    </div>
+                </div>
+
+                <!-- Soft Skills -->
+                <div class="skill-card">
+                    <div class="skill-icon">🤝</div>
+                    <h3 class="skill-title">Soft Skills</h3>
+                    <div class="skill-badges">
+                        <img src="https://img.shields.io/badge/Communication-FF69B4?style=for-the-badge&logo=chat&logoColor=white" alt="Communication" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Analytical_Skills-32CD32?style=for-the-badge&logo=analytics&logoColor=white" alt="Analytical Skills" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Customer_Service-FF4500?style=for-the-badge&logo=handshake&logoColor=white" alt="Customer Service" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Reasoning_Skills-9370DB?style=for-the-badge&logo=brain&logoColor=white" alt="Reasoning Skills" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Volunteering-FF6B6B?style=for-the-badge&logo=heart&logoColor=white" alt="Volunteering" class="skill-badge">
+                    </div>
+                </div>
+
+                <!-- Marketing & Sales -->
+                <div class="skill-card">
+                    <div class="skill-icon">📈</div>
+                    <h3 class="skill-title">Marketing & Sales</h3>
+                    <div class="skill-badges">
+                        <img src="https://img.shields.io/badge/Digital_Marketing-E91E63?style=for-the-badge&logo=marketing&logoColor=white" alt="Digital Marketing" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Sales-4CAF50?style=for-the-badge&logo=trending-up&logoColor=white" alt="Sales" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Spanish_Literature-FF5722?style=for-the-badge&logo=book&logoColor=white" alt="Spanish Literature" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Human_Resources-795548?style=for-the-badge&logo=people&logoColor=white" alt="Human Resources" class="skill-badge">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2>💼 Professional Experience</h2>
+        
+        <div class="experience-entry">
+            <h3>
+                <img src="logos/coursera.png" alt="Coursera Logo" style="height:32px;vertical-align:middle;margin-right:8px;">
+                Revenue Accountant
+            </h3>
+            <p class="experience-date">
+                <img src="logos/coursera.png" alt="Coursera Logo" style="height:24px;vertical-align:middle;margin-right:6px;">
+                Coursera • November 2024 - Present (9 months)
+            </p>
+            <ul>
+                <li>Managing revenue recognition processes for a leading global online learning platform</li>
+                <li>Analyzing complex revenue streams and ensuring compliance with accounting standards</li>
+                <li>Collaborating with cross-functional teams to optimize financial reporting processes</li>
+                <li>Implementing process improvements to enhance accuracy and efficiency</li>
+            </ul>
+        </div>
+
+        <div class="experience-entry">
+            <h3>
+                <img src="logos/altair logo.jpg" alt="Altair Logo" style="height:32px;vertical-align:middle;margin-right:8px;">
+                Revenue Financial Analyst
+            </h3>
+            <p class="experience-date">
+                <img src="logos/altair logo.jpg" alt="Altair Logo" style="height:24px;vertical-align:middle;margin-right:6px;">
+                Altair • August 2023 - November 2024 (1 year 4 months)
+            </p>
+            <ul>
+                <li>Conducted comprehensive financial analysis for revenue optimization strategies</li>
+                <li>Developed and maintained financial models for revenue forecasting and planning</li>
+                <li>Collaborated with sales and finance teams to ensure accurate revenue tracking</li>
+                <li>Prepared detailed reports and presentations for senior management</li>
+            </ul>
+        </div>
+
+        <div class="experience-entry">
+            <h3>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Xiaomi_logo.svg" alt="Xiaomi Logo" style="height:32px;vertical-align:middle;margin-right:8px;">
+                Revenue Assurance Specialist
+            </h3>
+            <p class="experience-date">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Xiaomi_logo.svg" alt="Xiaomi Logo" style="height:24px;vertical-align:middle;margin-right:6px;">
+                Xiaomi India • March 2022 - August 2023 (1 year 6 months) • Bangalore
+            </p>
+            <ul>
+                <li>Implemented revenue assurance processes for India's leading smartphone brand</li>
+                <li>Monitored and analyzed revenue streams to identify discrepancies and opportunities</li>
+                <li>Worked closely with product and sales teams to ensure revenue integrity</li>
+                <li>Developed automated reporting systems to improve operational efficiency</li>
+            </ul>
+        </div>
+
+        <div class="experience-entry">
+            <h3>
+                <img src="logos/lpu.png" alt="LPU Logo" style="height:32px;vertical-align:middle;margin-right:8px;">
+                Student Placement Coordinator
+            </h3>
+            <p class="experience-date">
+                <img src="logos/lpu.png" alt="LPU Logo" style="height:24px;vertical-align:middle;margin-right:6px;">
+                Lovely Professional University • July 2021 - June 2022 (1 year) • Punjab, India
+            </p>
+            <ul>
+                <li>Coordinated campus recruitment activities and placement drives</li>
+                <li>Built relationships with corporate partners and facilitated student-employer connections</li>
+                <li>Organized career development workshops and training sessions</li>
+                <li>Achieved high placement rates through strategic outreach and relationship management</li>
+            </ul>
+        </div>
+
+        <div class="experience-entry">
+            <h3>
+                <img src="logos/wipro.webp" alt="Wipro Logo" style="height:32px;vertical-align:middle;margin-right:8px;">
+                Marketing Intern & HR Executive
+            </h3>
+            <p class="experience-date">
+                <img src="logos/wipro.webp" alt="Wipro Logo" style="height:24px;vertical-align:middle;margin-right:6px;">
+                Various Organizations • 2020 - 2021
+            </p>
+            <ul>
+                <li><strong>Wipro (Intern):</strong> Gained hands-on experience in enterprise solutions and business processes</li>
+                <li><strong>Leads Flick (Marketing Intern):</strong> Developed digital marketing strategies and campaign management skills</li>
+                <li><strong>TopHawks (HR Executive):</strong> Managed recruitment processes and employee relations</li>
+                <li><strong>Rotaract District 3012 (Member):</strong> Participated in community service and leadership development programs</li>
+            </ul>
+        </div>
+
+        <div class="experience-entry">
+            <h3>
+                <img src="logos/rotaract club.svg" alt="Rotaract Logo" style="height:32px;vertical-align:middle;margin-right:8px;">
+                Community Volunteer
+            </h3>
+            <p class="experience-date">
+                Gramya Vikash Parishad, Mangalpur • July - August 2019 (2 months) • Bettiah, Bihar
+            </p>
+            <ul>
+                <li>Worked on 3 community development projects in rural Bihar</li>
+                <li>Gained valuable field experience in grassroots social work</li>
+                <li>Contributed to education and healthcare initiatives in underserved communities</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <h2>📬 Let's Connect!</h2>
+        <div class="contact-links">
+            <a href="mailto:riya.tripathi.in33@gmail.com" class="contact-link">
+                <span class="contact-icon">
+                    <img src="logos/gmail.png.jpg" alt="Gmail Logo" style="height:24px;width:24px;">
+                </span>
+                Email Me
+            </a>
+
+            <a href="https://www.linkedin.com/in/msesheshwari" target="_blank" rel="noreferrer" class="contact-link">
+                <span class="contact-icon">💼</span>
+                LinkedIn Profile
+            </a>
+            
+        </div>
+
+        <footer class="contact-footer">
+                  <p class="contact-footer">
+        I'm always open to exciting conversations, collaborations, and coffee ☕ chats!
+      </p>
+            <p>© <script>document.write(new Date().getFullYear())</script> Kumari Riya. All rights reserved.</p>
+        </footer>
+    </section>
+    <script>
+        let slides, dots;
+        let currentSlideIndex = 0;
+
+        function showSlide(index) {
+            if (!slides || !dots) return;
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+
+        function prevSlide() {
+            currentSlideIndex--;
+            if (currentSlideIndex < 0) {
+                currentSlideIndex = slides.length - 1;
+            }
+            showSlide(currentSlideIndex);
+        }
+
+        function nextSlide() {
+            currentSlideIndex++;
+            if (currentSlideIndex >= slides.length) {
+                currentSlideIndex = 0;
+            }
+            showSlide(currentSlideIndex);
+        }
+
+        function currentSlide(index) {
+            currentSlideIndex = index - 1;
+            showSlide(currentSlideIndex);
+        }
+
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            slides = document.querySelectorAll('.slide');
+            dots = document.querySelectorAll('.dot');
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href').substring(1);
+                    e.preventDefault();
+                    scrollToSection(targetId);
+                });
+            });
+
+            setInterval(() => {
+                nextSlide();
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
