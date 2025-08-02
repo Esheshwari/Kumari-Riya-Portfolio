@@ -15,9 +15,13 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    font-size: 20px; /* Increased from 18px for better readability */
+    font-size: 1.25rem !important; /* 20px - Force the size with !important */
     line-height: 1.75;
     color: #333;
+    /* Ensure consistent rendering across browsers */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
         .profile-pic {
@@ -1052,6 +1056,7 @@ body {
     </script>
 </body>
 </html>
+
 
 
 
