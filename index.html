@@ -13,31 +13,48 @@
             box-sizing: border-box;
         }
 
-body {
-    font-family: 'Times New Roman', Times, serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    overflow-x: hidden;
-    text-align: center;
-}
-        .profile-pic {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #fff;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    margin-bottom: 20px;
-    margin-top: 10px;
-    animation: fadeIn 1.5s ease;
-}
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow-x: hidden;
+            text-align: center;
+        }
 
+        .profile-pic {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            margin-top: 10px;
+            animation: profileFadeIn 2s ease;
+            transition: all 0.3s ease;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 40px rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes profileFadeIn {
+            0% { 
+                opacity: 0; 
+                transform: scale(0.8) translateY(30px); 
+            }
+            100% { 
+                opacity: 1; 
+                transform: scale(1) translateY(0); 
+            }
+        }
 
         /* Hero Section with Image Slider */
         .hero-section {
             position: relative;
             height: 100vh;
             overflow: hidden;
-            background: linear-gradient(135deg, #f8ffae 0%, #43c6ac 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
 
         .slider-container {
@@ -51,7 +68,7 @@ body {
             width: 100%;
             height: 100%;
             opacity: 0;
-            transition: opacity 1s ease-in-out;
+            transition: opacity 1.5s ease-in-out;
             background-size: cover;
             background-position: center;
             display: flex;
@@ -70,7 +87,8 @@ body {
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8));
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.85), rgba(118, 75, 162, 0.85));
+            backdrop-filter: blur(2px);
         }
 
         .slide-content {
@@ -79,7 +97,7 @@ body {
             text-align: center;
             color: white;
             padding: 2rem;
-            max-width: 800px;
+            max-width: 900px;
         }
 
         .slide-content h1 {
@@ -98,11 +116,11 @@ body {
 
         @keyframes subtleGlow {
             0% { 
-                text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+                text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
                 transform: scale(1);
             }
             100% { 
-                text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+                text-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
                 transform: scale(1.01);
             }
         }
@@ -120,9 +138,12 @@ body {
         .slide-content .subtitle {
             font-size: 1.1rem;
             font-weight: 300;
-            opacity: 0.9;
+            opacity: 0.95;
             margin-bottom: 2rem;
             font-style: italic;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         @keyframes fadeInUp {
@@ -140,7 +161,7 @@ body {
             font-weight: 600;
             cursor: pointer;
             transition: all 0.4s ease;
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
             font-family: 'Poppins', sans-serif;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -148,7 +169,7 @@ body {
 
         .cta-button:hover {
             transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
             background: linear-gradient(45deg, #f5576c, #f093fb, #764ba2, #667eea);
         }
 
@@ -157,7 +178,7 @@ body {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.15);
             border: none;
             color: white;
             font-size: 2rem;
@@ -171,7 +192,7 @@ body {
         }
 
         .slider-nav:hover {
-            background: rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.25);
             transform: translateY(-50%) scale(1.1);
         }
 
@@ -190,7 +211,7 @@ body {
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 10px;
+            gap: 12px;
         }
 
         .dot {
@@ -204,7 +225,8 @@ body {
 
         .dot.active {
             background: white;
-            transform: scale(1.2);
+            transform: scale(1.3);
+            box-shadow: 0 0 15px rgba(255,255,255,0.8);
         }
 
         /* Navigation Bar */
@@ -282,23 +304,30 @@ body {
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: rgb(124, 83, 238);
-            padding: 40px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 20px;
             box-sizing: border-box;
         }
 
         .about-wrapper {
-            max-width: 800px;
+            max-width: 900px;
             text-align: center;
-            font-family: 'Georgia', serif;
+            font-family: 'Poppins', sans-serif;
             color: white;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 50px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
         .intro {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            font-weight: 500;
-            color: #f8f9fa;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            font-weight: 600;
+            color: #ffffff;
+            font-family: 'Playfair Display', serif;
         }
 
         .intro span {
@@ -307,71 +336,71 @@ body {
         }
 
         .about-text {
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             line-height: 1.8;
-            color: #f1f3f4;
-            margin-bottom: 16px;
+            color: #f8f9fa;
+            margin-bottom: 20px;
+            text-align: left;
         }
 
         /* Education Section */
-        .edu-section {
-            background-color: #2a1cc7;
-            padding: 60px 10%;
+        .edu-section, .highlight-section {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            padding: 80px 10%;
             color: white;
-            background-size: 300% 300%;
-            animation: gradientShift 10s ease infinite;
             min-height: 100vh;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .highlight-section {
-            padding: 60px 10% 80px;
-            text-align: center;
-            position: relative;
-            background: linear-gradient(135deg, #a772da 0%, #8ec5fc 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .highlight-section h2 {
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             font-weight: bold;
             color: white;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
             animation: fadeInDown 1s ease-out;
+            font-family: 'Playfair Display', serif;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .edu-entry {
-            max-width: 800px;
-            margin: 0 auto 50px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            max-width: 900px;
+            margin: 0 auto 40px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .edu-entry:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.2);
         }
 
         .edu-entry h3 {
             color: white;
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
         }
 
         .edu-entry p, .edu-entry li {
-            font-size: 1rem;
-            line-height: 1.7;
-            margin: 6px 0;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin: 8px 0;
             color: #f1f3f4;
         }
 
         @keyframes fadeInDown {
             from {
                 opacity: 0;
-                transform: translateY(-20px);
+                transform: translateY(-30px);
             }
             to {
                 opacity: 1;
@@ -379,154 +408,183 @@ body {
             }
         }
 
-        /* Skills Section */
+        /* Skills Section - FIXED */
         .skills-section {
             padding: 100px 0;
-            background-color: #667eea;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
         }
 
         .skills-section .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 16px;
+            padding: 0 20px;
             box-sizing: border-box;
         }
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
             width: 100%;
             box-sizing: border-box;
-            overflow-x: auto;
             padding-bottom: 20px;
         }
 
         @media (max-width: 1024px) {
             .skills-grid {
                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 20px;
+                gap: 30px;
             }
         }
 
         @media (max-width: 768px) {
             .skills-section {
-                padding: 40px 0;
+                padding: 60px 0;
             }
             .skills-grid {
                 grid-template-columns: 1fr;
-                gap: 16px;
+                gap: 20px;
+                margin-top: 40px;
             }
             .skill-card {
-                padding: 20px;
+                padding: 25px;
             }
         }
 
         .skill-card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 40px;
             text-align: center;
             border: 1px solid rgba(255,255,255,0.2);
-            transition: transform 0.3s ease;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
         .skill-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            background: rgba(255,255,255,0.2);
         }
 
         .skill-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
+            font-size: 3.5rem;
+            margin-bottom: 25px;
             color: white;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .skill-title {
             color: white;
-            font-size: 1.3rem;
-            margin-bottom: 15px;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
         }
 
         .skill-badges {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 12px;
             align-items: center;
         }
 
         .skill-badge {
             max-width: 100%;
             height: auto;
+            transition: transform 0.3s ease;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-badge:hover {
+            transform: scale(1.05);
         }
 
         /* Experience Section */
         #experience {
-            background-color: #9293ee;
-            padding: 60px 10%;
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            padding: 80px 10%;
             color: white;
+            min-height: 100vh;
         }
 
         #experience h2 {
             text-align: center;
-            font-size: 3.5rem;
-            margin-bottom: 40px;
+            font-size: 3.8rem;
+            margin-bottom: 60px;
             color: white;
             animation: fadeInDown 1s ease-out;
+            font-family: 'Playfair Display', serif;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .experience-entry {
-            max-width: 850px;
-            margin: 0 auto 60px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            max-width: 950px;
+            margin: 0 auto 50px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .experience-entry:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.2);
         }
 
         .experience-date {
             font-size: 1.2rem;
             color: #f1f3f4;
-            margin: -10px 0 15px 0;
+            margin: -5px 0 20px 0;
             font-style: italic;
-            font-weight: 500;
+            font-weight: 400;
         }
 
         .experience-entry h3 {
             font-size: 2rem;
             color: white;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
         }
 
         .experience-entry ul {
-            padding-left: 20px;
+            padding-left: 25px;
         }
 
         .experience-entry li {
             color: #f1f3f4;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            line-height: 1.6;
         }
 
         /* Contact Section */
         .contact-section {
-            background-color: #667eea;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 100px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 60vh;
+            min-height: 80vh;
         }
 
         .contact-section h2 {
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             color: white;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
             text-align: center;
+            font-family: 'Playfair Display', serif;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .contact-links {
@@ -534,31 +592,34 @@ body {
             align-items: center;
             justify-content: center;    
             flex-direction: column;
-            gap: 20px;
-            margin-bottom: 30px;
+            gap: 25px;
+            margin-bottom: 40px;
         }
 
         .contact-link {
             display: inline-flex;
             align-items: center;
             font-weight: 600;
-            font-size: 1.0rem;
+            font-size: 1.1rem;
             color: white;
             text-decoration: none;
-            padding: 15px 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            transition: all 0.3s ease;
+            padding: 18px 30px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            transition: all 0.4s ease;
             border: 1px solid rgba(255, 255, 255, 0.2);
             position: relative;
             overflow: hidden;
-            gap: 0.75rem;
+            gap: 1rem;
+            backdrop-filter: blur(15px);
+            min-width: 250px;
+            justify-content: center;
         }
 
         .contact-link:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
             border-color: rgba(255, 255, 255, 0.4);
         }
 
@@ -566,41 +627,46 @@ body {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             flex-shrink: 0;
         }
 
         .contact-footer {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: #f1f3f4;
             text-align: center;
-            margin: 20px 0;
+            margin: 30px 0;
+            max-width: 600px;
+            line-height: 1.6;
         }
 
         .section-title {
             text-align: center;
             font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             font-weight: 700;
             color: white;
-            margin-bottom: 20px;
-            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .section-subtitle {
             text-align: center;
             color: rgba(255, 255, 255, 0.9);
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 300;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
             font-family: 'Poppins', sans-serif;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
             .slide-content h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
             
             .slide-content p {
@@ -609,7 +675,7 @@ body {
             
             .navbar {
                 position: fixed;
-                top: 20px;
+                top: 15px;
                 transform: translateX(-50%);
             }
             
@@ -624,6 +690,23 @@ body {
                 padding: 8px 12px;
                 font-size: 12px;
             }
+
+            .profile-pic {
+                width: 150px;
+                height: 150px;
+            }
+
+            .section-title {
+                font-size: 2.8rem;
+            }
+
+            .about-wrapper {
+                padding: 30px;
+            }
+
+            .intro {
+                font-size: 1.8rem;
+            }
         }
 
         /* Floating Animation */
@@ -633,7 +716,21 @@ body {
         }
 
         .floating {
-            animation: float 3s ease-in-out infinite;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Logo styling */
+        .logo-img {
+            height: 32px;
+            width: auto;
+            vertical-align: middle;
+            margin-right: 12px;
+            border-radius: 4px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-img:hover {
+            transform: scale(1.1);
         }
     </style>
 </head>
@@ -654,16 +751,15 @@ body {
     <section class="hero-section" id="home">
         <div class="slider-container">
             <!-- Slide 1 -->
-<!-- Slide 1 -->
-<div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');">
-    <div class="slide-content">
-        <img src="profilepic.jpg" alt="Riya Profile" class="profile-pic">
-        <h1 class="floating">Hi, I'm Riya!</h1>
-        <p>💼 Revenue Accountant at Coursera</p>
-        <p class="subtitle">MBA Professional with 3+ years of experience in Revenue Recognition, Financial Analysis, and Business Operations. Passionate about transforming financial data into strategic insights.</p>
-        <button class="cta-button" onclick="scrollToSection('about')">Explore My Journey</button>
-    </div>
-</div>
+            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');">
+                <div class="slide-content">
+                    <img src="profilepic.jpg" alt="Riya Profile" class="profile-pic">
+                    <h1 class="floating">Hi, I'm Riya!</h1>
+                    <p>💼 Revenue Accountant at Coursera</p>
+                    <p class="subtitle">MBA Professional with 3+ years of experience in Revenue Recognition, Financial Analysis, and Business Operations. Passionate about transforming financial data into strategic insights.</p>
+                    <button class="cta-button" onclick="scrollToSection('about')">Explore My Journey</button>
+                </div>
+            </div>
 
             <!-- Slide 2 -->
             <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');">
@@ -686,16 +782,14 @@ body {
             </div>
 
             <!-- Slide 4 -->
-           <!-- Slide 5 -->
-<div class="slide" style="background-image: url('https://images.unsplash.com/photo-1605902711622-cfb43c44367e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');">
-    <div class="slide-content">
-        <h1 class="floating">Freelancer | Consultant</h1>
-        <p>🌐 Open to Freelance Roles in Online Recruitment, WordPress & Digital Marketing</p>
-        <p class="subtitle">Bringing a results-oriented mindset and professional experience to support growing businesses with hiring strategy, website management, and marketing outreach. Let’s collaborate and create value together.</p>
-        <button class="cta-button" onclick="scrollToSection('contact')">Hire Me</button>
-    </div>
-</div>
-
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1605902711622-cfb43c44367e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');">
+                <div class="slide-content">
+                    <h1 class="floating">Freelancer | Consultant</h1>
+                    <p>🌐 Open to Freelance Roles in Online Recruitment, WordPress & Digital Marketing</p>
+                    <p class="subtitle">Bringing a results-oriented mindset and professional experience to support growing businesses with hiring strategy, website management, and marketing outreach. Let's collaborate and create value together.</p>
+                    <button class="cta-button" onclick="scrollToSection('contact')">Hire Me</button>
+                </div>
+            </div>
         </div>
 
         <!-- Slider Navigation -->
@@ -727,23 +821,21 @@ body {
         </div>
     </section>
 
-    <!-- Education Section -->
-    <section id="education" class="highlight-section">
-        <h2>Education</h2>
+<!-- Education Section -->
+<section id="education" class="highlight-section">
+    <h2>Education</h2>
 
-        <div class="edu-entry">
-            <h3>
-                <img src="logos/lpu.png" alt="LPU Logo" style="height:32px;vertical-align:middle;margin-right:8px;">
-                MBA
-            </h3>
-            <p><strong>Institution:</strong> Lovely Professional University</p>
-            <p><strong>Specialization:</strong> Marketing and Finance</p>
-            <p><strong>Duration:</strong> 2020 - 2022</p>
-            <p>Comprehensive business education combining undergraduate and graduate studies, providing strong foundation in both theoretical concepts and practical applications.</p>
-        </div>
-
-       
-    </section>
+    <div class="edu-entry">
+        <h3 style="justify-content: center;">
+            <img src="logos/lpu.png" alt="LPU Logo" class="logo-img">
+            MBA
+        </h3>
+        <p><strong>Institution:</strong> Lovely Professional University</p>
+        <p><strong>Specialization:</strong> Marketing and Finance</p>
+        <p><strong>Duration:</strong> 2020 - 2022</p>
+        <p>Comprehensive business education combining undergraduate and graduate studies, providing strong foundation in both theoretical concepts and practical applications.</p>
+    </div>
+</section>
 
     <!-- Skills Section -->
     <section class="skills-section" id="skills">
@@ -753,49 +845,52 @@ body {
             
             <div class="skills-grid">
                 <!-- Financial Expertise -->
-             <div class="skill-card">
-    <div class="skill-icon">💰</div>
-    <h3 class="skill-title">Financial Acumen</h3>
-<div class="skill-badges">
-    <img src="https://img.shields.io/badge/Revenue_Recognition-4CAF50?style=for-the-badge&logo=analytics&logoColor=white" alt="Revenue Recognition" class="skill-badge">
-    <img src="https://img.shields.io/badge/Financial_Accounting-2196F3?style=for-the-badge&logo=calculator&logoColor=white" alt="Financial Accounting" class="skill-badge">
-    <img src="https://img.shields.io/badge/Account_Reconciliation-607D8B?style=for-the-badge&logo=balance&logoColor=white" alt="Account Reconciliation" class="skill-badge">
-    <img src="https://img.shields.io/badge/US_GAAP-FF7043?style=for-the-badge&logo=law&logoColor=white" alt="US GAAP" class="skill-badge">
-    <img src="https://img.shields.io/badge/Accounts_Receivable_(AR)-EF6C00?style=for-the-badge&logo=handshake&logoColor=white" alt="Accounts Receivable" class="skill-badge">
-    <img src="https://img.shields.io/badge/Contract_Review-9C27B0?style=for-the-badge&logo=file-text&logoColor=white" alt="Contract Review" class="skill-badge">
-</div>
+                <div class="skill-card">
+                    <div class="skill-icon">💰</div>
+                    <h3 class="skill-title">Financial Acumen</h3>
+                    <div class="skill-badges">
+                        <img src="https://img.shields.io/badge/Revenue_Recognition-4CAF50?style=for-the-badge&logo=analytics&logoColor=white" alt="Revenue Recognition" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Financial_Accounting-2196F3?style=for-the-badge&logo=calculator&logoColor=white" alt="Financial Accounting" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Account_Reconciliation-607D8B?style=for-the-badge&logo=balance&logoColor=white" alt="Account Reconciliation" class="skill-badge">
+                        <img src="https://img.shields.io/badge/US_GAAP-FF7043?style=for-the-badge&logo=law&logoColor=white" alt="US GAAP" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Accounts_Receivable_(AR)-EF6C00?style=for-the-badge&logo=handshake&logoColor=white" alt="Accounts Receivable" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Contract_Review-9C27B0?style=for-the-badge&logo=file-text&logoColor=white" alt="Contract Review" class="skill-badge">
+                    </div>
+                </div>
 
-<!-- Technical Tools -->
-<div class="skill-card">
-    <div class="skill-icon">🔧</div>
-    <h3 class="skill-title">Technical Tools</h3>
-    <div class="skill-badges">
-        <img src="https://img.shields.io/badge/NetSuite-1D3F73?style=for-the-badge&logo=oracle&logoColor=white" alt="NetSuite" class="skill-badge">
-        <img src="https://img.shields.io/badge/SFDC-00A1E0?style=for-the-badge&logo=salesforce&logoColor=white" alt="SFDC" class="skill-badge">
-        <img src="https://img.shields.io/badge/SAP-0FAAFF?style=for-the-badge&logo=sap&logoColor=white" alt="SAP" class="skill-badge">
-        <img src="https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black" alt="Power BI" class="skill-badge">
-        <img src="https://img.shields.io/badge/Tableau-E97627?style=for-the-badge&logo=tableau&logoColor=white" alt="Tableau" class="skill-badge">
-        <img src="https://img.shields.io/badge/CRM_Integration-FF6B35?style=for-the-badge&logo=salesforce&logoColor=white" alt="CRM Integration" class="skill-badge">
-        <img src="https://img.shields.io/badge/Microsoft_Office-D83B01?style=for-the-badge&logo=microsoft-office&logoColor=white" alt="Microsoft Office" class="skill-badge">
-        
-    </div>
-</div>
+                <!-- Technical Tools -->
+                <div class="skill-card">
+                    <div class="skill-icon">🔧</div>
+                    <h3 class="skill-title">Technical Tools</h3>
+                    <div class="skill-badges">
+                        <img src="https://img.shields.io/badge/NetSuite-1D3F73?style=for-the-badge&logo=oracle&logoColor=white" alt="NetSuite" class="skill-badge">
+                        <img src="https://img.shields.io/badge/SFDC-00A1E0?style=for-the-badge&logo=salesforce&logoColor=white" alt="SFDC" class="skill-badge">
+                        <img src="https://img.shields.io/badge/SAP-0FAAFF?style=for-the-badge&logo=sap&logoColor=white" alt="SAP" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black" alt="Power BI" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Tableau-E97627?style=for-the-badge&logo=tableau&logoColor=white" alt="Tableau" class="skill-badge">
+                        <img src="https://img.shields.io/badge/CRM_Integration-FF6B35?style=for-the-badge&logo=salesforce&logoColor=white" alt="CRM Integration" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Microsoft_Office-D83B01?style=for-the-badge&logo=microsoft-office&logoColor=white" alt="Microsoft Office" class="skill-badge">
+                    </div>
+                </div>
                 
-<!-- Freelancing Skills -->
-<div class="skill-card">
-    <div class="skill-icon">🌐</div>
-    <h3 class="skill-title">Freelancing Skills</h3>
-    <div class="skill-badges">
-        <img src="https://img.shields.io/badge/WordPress-21759B?style=for-the-badge&logo=wordpress&logoColor=white" alt="WordPress" class="skill-badge">
-        <img src="https://img.shields.io/badge/Canva-00C4CC?style=for-the-badge&logo=canva&logoColor=white" alt="Canva" class="skill-badge">
-        <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white" alt="Figma" class="skill-badge">
-        <img src="https://img.shields.io/badge/LinkedIn_Recruiter-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Recruiter" class="skill-badge">
-        <img src="https://img.shields.io/badge/Content_Writing-FF5722?style=for-the-badge&logo=quill&logoColor=white" alt="Content Writing" class="skill-badge">
-        <img src="https://img.shields.io/badge/Upwork-F2B01E?style=for-the-badge&logo=upwork&logoColor=white" alt="Upwork" class="skill-badge">
-        <img src="https://img.shields.io/badge/Fiverr-1DBF73?style=for-the-badge&logo=fiverr&logoColor=white" alt="Fiverr" class="skill-badge">
-        <img src="https://img.shields.io/badge/Email_Marketing-4CAF50?style=for-the-badge&logo=gmail&logoColor=white" alt="Email Marketing" class="skill-badge">
-    </div>
-</div>
+                <!-- Freelancing Skills -->
+                <div class="skill-card">
+                    <div class="skill-icon">🌐</div>
+                    <h3 class="skill-title">Freelancing Skills</h3>
+                    <div class="skill-badges">
+                        <img src="https://img.shields.io/badge/WordPress-21759B?style=for-the-badge&logo=wordpress&logoColor=white" alt="WordPress" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Canva-00C4CC?style=for-the-badge&logo=canva&logoColor=white" alt="Canva" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white" alt="Figma" class="skill-badge">
+                        <img src="https://img.shields.io/badge/LinkedIn_Recruiter-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Recruiter" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Content_Writing-FF5722?style=for-the-badge&logo=quill&logoColor=white" alt="Content Writing" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Upwork-F2B01E?style=for-the-badge&logo=upwork&logoColor=white" alt="Upwork" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Fiverr-1DBF73?style=for-the-badge&logo=fiverr&logoColor=white" alt="Fiverr" class="skill-badge">
+                        <img src="https://img.shields.io/badge/Email_Marketing-4CAF50?style=for-the-badge&logo=gmail&logoColor=white" alt="Email Marketing" class="skill-badge">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Experience Section -->
     <section id="experience">
@@ -803,7 +898,7 @@ body {
         
         <div class="experience-entry">
             <h3>
-                <img src="logos/coursera.png" alt="Coursera Logo" style="height:32px;vertical-align:middle;margin-right:8px;">
+                <img src="logos/coursera.png" alt="Coursera Logo" class="logo-img">
                 Revenue Accountant
             </h3>
             <p class="experience-date">
@@ -813,7 +908,7 @@ body {
 
         <div class="experience-entry">
             <h3>
-                <img src="logos/altair logo.jpg" alt="Altair Logo" style="height:32px;vertical-align:middle;margin-right:8px;">
+                <img src="logos/altair logo.jpg" alt="Altair Logo" class="logo-img">
                 Revenue Financial Analyst
             </h3>
             <p class="experience-date">
@@ -823,7 +918,7 @@ body {
 
         <div class="experience-entry">
             <h3>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Xiaomi_logo.svg" alt="Xiaomi Logo" style="height:32px;vertical-align:middle;margin-right:8px;">
+                <img src="logos/xiaomi.png" alt="Xiaomi Logo" class="logo-img">
                 Revenue Assurance Specialist
             </h3>
             <p class="experience-date">
@@ -833,7 +928,7 @@ body {
 
         <div class="experience-entry">
             <h3>
-                <img src="logos/lpu.png" alt="LPU Logo" style="height:32px;vertical-align:middle;margin-right:8px;">
+                <img src="logos/lpu.png" alt="LPU Logo" class="logo-img">
                 Student Placement Coordinator
             </h3>
             <p class="experience-date">
@@ -843,26 +938,27 @@ body {
 
         <div class="experience-entry">
             <h3>
-                <img src="logos/wipro.webp" alt="Wipro Logo" style="height:32px;vertical-align:middle;margin-right:8px;">
+                <img src="logos/wipro.webp" alt="Wipro Logo" class="logo-img">
                 Client Representative 
             </h3>
             <p class="experience-date">
                 Wipro • 2020 - 2021
             </p>
         </div>
+
         <div class="experience-entry">
-    <h3>
-        <img src="logos/TopHawks.jpg" alt="TopHawks" style="height:32px;vertical-align:middle;margin-right:8px;">
-        HR Executive
-    </h3>
-    <p class="experience-date">
-        TopHawks • February 2021 – July 2022
-    </p>
+            <h3>
+                <img src="logos/TopHawks.jpg" alt="TopHawks" class="logo-img">
+                HR Executive
+            </h3>
+            <p class="experience-date">
+                TopHawks • February 2021 – July 2022
+            </p>
         </div>
 
         <div class="experience-entry">
             <h3>
-                <img src="logos/rotaract club.svg" alt="Rotaract Logo" style="height:32px;vertical-align:middle;margin-right:8px;">
+                <img src="logos/rotaract club.svg" alt="Rotaract Logo" class="logo-img">
                 Community Volunteer
             </h3>
             <p class="experience-date">
@@ -873,34 +969,34 @@ body {
 
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
-<h2>📬 Let's Connect!</h2>
-<div class="contact-links">
-    <a href="mailto:riya.tripathi.in33@gmail.com" class="contact-link">
-        <span class="contact-icon">
-            <img src="logos/gmail.png.jpg" alt="Gmail Logo" style="height:24px;width:24px;">
-        </span>
-        Email Me
-    </a>
+        <h2>📬 Let's Connect!</h2>
+        <div class="contact-links">
+            <a href="mailto:riya.tripathi.in33@gmail.com" class="contact-link">
+                <span class="contact-icon">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png" alt="Gmail Logo" style="height:24px;width:24px;">
+                </span>
+                Email Me
+            </a>
 
-    <a href="https://www.linkedin.com/in/msesheshwari" target="_blank" rel="noreferrer" class="contact-link">
-        <span class="contact-icon">💼</span>
-        LinkedIn Profile
-    </a>
+            <a href="https://www.linkedin.com/in/msesheshwari" target="_blank" rel="noreferrer" class="contact-link">
+                <span class="contact-icon">💼</span>
+                LinkedIn Profile
+            </a>
 
-    <a href="tel:+919771170893" class="contact-link">
-        <span class="contact-icon">📞</span>
-        +91 9771170893
-    </a>
-</div>
-
+            <a href="tel:+919771170893" class="contact-link">
+                <span class="contact-icon">📞</span>
+                Contact Number
+            </a>
+        </div>
 
         <footer class="contact-footer">
-                  <p class="contact-footer">
-        I'm always open to exciting conversations and collaborations. Looking forward to connect with you!
-      </p>
+            <p class="contact-footer">
+                I'm always open to exciting conversations and collaborations. Looking forward to connect with you!
+            </p>
             <p>© <script>document.write(new Date().getFullYear())</script> All rights reserved.</p>
         </footer>
     </section>
+
     <script>
         let slides, dots;
         let currentSlideIndex = 0;
@@ -956,12 +1052,12 @@ body {
 
             setInterval(() => {
                 nextSlide();
-            }, 5000);
+            }, 6000);
         });
     </script>
 </body>
-
 </html>
+
 
 
 
